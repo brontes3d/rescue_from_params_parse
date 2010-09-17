@@ -1,0 +1,15 @@
+This plugin patches rails 2.3 to handle errors during parameter parsing in the same way that it handles exceptions raised from your controller actions.
+
+Existing Rails 2.3 behavior without this plugin:
+
+A parameter parsing error would be caught by failsafe, return 500, and would skip over hooks in standard exception notification plugin.
+
+Rails 2.3 behavior with this plugin installed:
+
+A parameter parsing error will be caught in rack middleware and then re-raised after dispatch so that rescue_action hooks can catch it, and so that exception notification plugin hooks can also catch.
+
+
+
+Copyright (c) 2008-2010 3M. All rights reserved. Released under the MIT license.
+
+Authored by Jacob Burkhart.
